@@ -9,12 +9,19 @@ class Product {
   Product(this.id, this.name, this.price, this.category, this.image,
       this.description);
 
-  // returns new instance of product with map data
   factory Product.fromMap(Map<String, dynamic> map) => Product(
       map['id'],
       map['name'],
-      map['price'],
+      (map['price'] as num).toDouble(),
       map['category'],
       map['image'],
       map['description']);
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+          other is Product && runtimeType == other.runtimeType && id == other.id;
+
+  @override
+  int get hashCode => id.hashCode;
 }
