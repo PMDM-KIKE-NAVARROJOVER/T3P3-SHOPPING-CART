@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:t3_shopping_list/models/product.dart';
 import 'package:t3_shopping_list/providers/products_data.dart';
+import 'package:t3_shopping_list/screens/product_detail.dart';
 
 class ProductsScreen extends StatelessWidget {
   const ProductsScreen({Key? key}) : super(key: key);
@@ -42,7 +43,13 @@ class _ProductsListView extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(10.0),
       child: ListTile(
-        onTap: () {},
+        onTap: () => Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) =>
+                ProductDetail(product.id, product.name, product.description),
+          ),
+        ),
         leading: Image.asset(product.image, width: 100.0, height: 100.0, fit: BoxFit.contain, alignment: Alignment.bottomCenter),
         trailing: const Icon(Icons.shopping_bag),
         title: Text(product.name),
